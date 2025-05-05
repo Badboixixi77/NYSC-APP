@@ -30,57 +30,57 @@ export default function Navigation() {
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="text-2xl font-bold text-green-600">
+              <Link href="/" className="text-2xl font-extrabold tracking-tight text-primary-500">
                 NYSC App
               </Link>
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
                 href="/dashboard"
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold tracking-wide ${
                   isActive('/dashboard')
-                    ? 'border-green-500 text-gray-900'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    ? 'border-primary-500 text-gray-900'
+                    : 'border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900'
                 }`}
               >
                 Dashboard
               </Link>
               <Link
                 href="/ppa-search"
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold tracking-wide ${
                   isActive('/ppa-search')
-                    ? 'border-green-500 text-gray-900'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    ? 'border-primary-500 text-gray-900'
+                    : 'border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900'
                 }`}
               >
                 PPA Search
               </Link>
               <Link
                 href="/reminders"
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold tracking-wide ${
                   isActive('/reminders')
-                    ? 'border-green-500 text-gray-900'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    ? 'border-primary-500 text-gray-900'
+                    : 'border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900'
                 }`}
               >
                 Reminders
               </Link>
               <Link
                 href="/community"
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold tracking-wide ${
                   isActive('/community')
-                    ? 'border-green-500 text-gray-900'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    ? 'border-primary-500 text-gray-900'
+                    : 'border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900'
                 }`}
               >
                 Community
               </Link>
               <Link
                 href="/resources"
-                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-semibold tracking-wide ${
                   isActive('/resources')
-                    ? 'border-green-500 text-gray-900'
-                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                    ? 'border-primary-500 text-gray-900'
+                    : 'border-transparent text-gray-600 hover:border-gray-300 hover:text-gray-900'
                 }`}
               >
                 Resources
@@ -90,12 +90,12 @@ export default function Navigation() {
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
             {user ? (
               <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-700">
+                <span className="text-sm font-medium text-gray-900">
                   {user.email}
                 </span>
                 <button
                   onClick={handleSignOut}
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                 >
                   <FiLogOut className="mr-2" />
                   Sign Out
@@ -105,14 +105,14 @@ export default function Navigation() {
               <div className="flex items-center space-x-4">
                 <Link
                   href="/auth/login"
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-green-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-md text-primary-500 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                 >
                   <FiUser className="mr-2" />
                   Sign In
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-semibold rounded-md text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                 >
                   Sign Up
                 </Link>
@@ -122,7 +122,7 @@ export default function Navigation() {
           <div className="-mr-2 flex items-center sm:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
             >
               <span className="sr-only">Open main menu</span>
               <svg
@@ -165,9 +165,9 @@ export default function Navigation() {
             href="/ppa-search"
             className={`${
               isActive('/ppa-search')
-                ? 'bg-green-50 border-green-500 text-green-700'
-                : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
-            } block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}
+                ? 'bg-primary-50 border-primary-500 text-primary-700'
+                : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900'
+            } block pl-3 pr-4 py-2 border-l-4 text-base font-semibold`}
           >
             PPA Search
           </Link>
@@ -175,9 +175,9 @@ export default function Navigation() {
             href="/reminders"
             className={`${
               isActive('/reminders')
-                ? 'bg-green-50 border-green-500 text-green-700'
-                : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
-            } block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}
+                ? 'bg-primary-50 border-primary-500 text-primary-700'
+                : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900'
+            } block pl-3 pr-4 py-2 border-l-4 text-base font-semibold`}
           >
             Reminders
           </Link>
@@ -185,9 +185,9 @@ export default function Navigation() {
             href="/community"
             className={`${
               isActive('/community')
-                ? 'bg-green-50 border-green-500 text-green-700'
-                : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
-            } block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}
+                ? 'bg-primary-50 border-primary-500 text-primary-700'
+                : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900'
+            } block pl-3 pr-4 py-2 border-l-4 text-base font-semibold`}
           >
             Community
           </Link>
@@ -195,9 +195,9 @@ export default function Navigation() {
             href="/resources"
             className={`${
               isActive('/resources')
-                ? 'bg-green-50 border-green-500 text-green-700'
-                : 'border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700'
-            } block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}
+                ? 'bg-primary-50 border-primary-500 text-primary-700'
+                : 'border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-900'
+            } block pl-3 pr-4 py-2 border-l-4 text-base font-semibold`}
           >
             Resources
           </Link>

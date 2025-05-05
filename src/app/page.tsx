@@ -1,170 +1,113 @@
 import Link from 'next/link'
-import { FaSearch, FaBell, FaUsers, FaFileAlt, FaLightbulb, FaArrowRight } from 'react-icons/fa'
+import { FiSearch, FiBell, FiUsers, FiFileText } from 'react-icons/fi'
 
 export default function Home() {
   return (
-    <>
+    <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-600 to-green-800 text-white py-24">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              Your NYSC Journey, <br />
-              <span className="text-yellow-300">Simplified</span>
+      <section className="bg-gradient-to-r from-primary-600 to-primary-700 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+          <div className="text-center">
+            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+              Welcome to NYSC App
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-green-100">
-              Join thousands of corps members who are making the most of their service year with our comprehensive platform.
+            <p className="mt-6 text-xl max-w-3xl mx-auto">
+              Your all-in-one platform for managing your NYSC experience. Find PPAs, track clearance, and connect with fellow corps members.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link 
+            <div className="mt-10">
+              <Link
                 href="/auth/signup"
-                className="bg-white text-green-800 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition-colors text-center"
+                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary-600 bg-white hover:bg-gray-50"
               >
-                Get Started Free
+                Get Started
               </Link>
-              <Link 
-                href="/features"
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors text-center"
-              >
-                Learn More
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl font-bold text-green-600 mb-2">10K+</div>
-              <div className="text-gray-600">Active Users</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-green-600 mb-2">500+</div>
-              <div className="text-gray-600">PPAs Listed</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-green-600 mb-2">36</div>
-              <div className="text-gray-600">States Covered</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold text-green-600 mb-2">98%</div>
-              <div className="text-gray-600">Satisfaction Rate</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Everything You Need</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Our platform provides all the tools and resources you need to make your NYSC year successful and memorable.
-            </p>
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              Key Features
+            </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* PPA Search & Rating */}
-            <div className="p-8 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                <FaSearch className="text-green-600 text-xl" />
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="text-primary-500 mb-4">
+                <FiSearch className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">PPA Search & Rating</h3>
-              <p className="text-gray-600 mb-6">
-                Find and rate Primary Place of Assignment (PPA) locations. Get insights from other corps members.
+              <h3 className="text-xl font-bold text-gray-900 mb-2">PPA Search & Rating</h3>
+              <p className="text-gray-600">
+                Find and rate Primary Places of Assignment. Get insights from other corps members.
               </p>
-              <Link href="/ppa-search" className="text-green-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all">
-                Explore PPAs <FaArrowRight />
-              </Link>
             </div>
-
-            {/* Clearance Reminder */}
-            <div className="p-8 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                <FaBell className="text-green-600 text-xl" />
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="text-primary-500 mb-4">
+                <FiBell className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Clearance Reminder</h3>
-              <p className="text-gray-600 mb-6">
-                Never miss important clearance dates. Get timely notifications for all NYSC activities.
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Clearance Reminder</h3>
+              <p className="text-gray-600">
+                Never miss important clearance dates. Get timely notifications for all your NYSC activities.
               </p>
-              <Link href="/reminders" className="text-green-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all">
-                Set Reminders <FaArrowRight />
-              </Link>
             </div>
-
-            {/* Community Section */}
-            <div className="p-8 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                <FaUsers className="text-green-600 text-xl" />
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="text-primary-500 mb-4">
+                <FiUsers className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Community Hub</h3>
-              <p className="text-gray-600 mb-6">
-                Connect with corps members in your state or LGA. Share experiences and resources.
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Community Hub</h3>
+              <p className="text-gray-600">
+                Connect with fellow corps members. Share experiences and get support.
               </p>
-              <Link href="/community" className="text-green-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all">
-                Join Community <FaArrowRight />
-              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Info Center Preview */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Resource Center</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Access essential resources and guides to help you navigate your service year smoothly.
-            </p>
+      {/* Information Center Preview */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+              Information Center
+            </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-8 bg-gray-50 rounded-xl hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                <FaFileAlt className="text-green-600 text-xl" />
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="text-primary-500 mb-4">
+                <FiFileText className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Sample Letters</h3>
-              <p className="text-gray-600 mb-6">
-                Access templates for various NYSC-related letters and documents. From PPA requests to leave applications.
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Sample Letters</h3>
+              <p className="text-gray-600 mb-4">
+                Access templates for various NYSC-related letters and documents.
               </p>
-              <Link href="/resources/letters" className="text-green-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all">
-                View Templates <FaArrowRight />
+              <Link
+                href="/resources"
+                className="text-primary-500 hover:text-primary-600 font-medium"
+              >
+                View Templates →
               </Link>
             </div>
-            <div className="p-8 bg-gray-50 rounded-xl hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                <FaLightbulb className="text-green-600 text-xl" />
+            <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="text-primary-500 mb-4">
+                <FiFileText className="h-8 w-8" />
               </div>
-              <h3 className="text-xl font-semibold mb-4">Tips & Resources</h3>
-              <p className="text-gray-600 mb-6">
-                Essential tips and resources for a successful service year. From accommodation guides to local insights.
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Tips & Resources</h3>
+              <p className="text-gray-600 mb-4">
+                Essential guides and tips for a successful NYSC experience.
               </p>
-              <Link href="/resources/tips" className="text-green-600 font-semibold flex items-center gap-2 hover:gap-3 transition-all">
-                Read Tips <FaArrowRight />
+              <Link
+                href="/resources"
+                className="text-primary-500 hover:text-primary-600 font-medium"
+              >
+                Learn More →
               </Link>
             </div>
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-green-600 text-white">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Start Your NYSC Journey?</h2>
-          <p className="text-xl mb-8 text-green-100 max-w-2xl mx-auto">
-            Join thousands of corps members who are already using NYSC Hack to make their service year better.
-          </p>
-          <Link 
-            href="/auth/signup"
-            className="bg-white text-green-800 px-8 py-4 rounded-lg font-semibold hover:bg-green-50 transition-colors inline-block"
-          >
-            Get Started Now
-          </Link>
-        </div>
-      </section>
-    </>
+    </main>
   )
 }
