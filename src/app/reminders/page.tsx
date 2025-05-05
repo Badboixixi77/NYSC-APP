@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { collection, query, where, onSnapshot, addDoc, deleteDoc, doc, orderBy } from 'firebase/firestore'
 import { auth, db } from '@/lib/firebase'
-import { FiPlus, FiTrash2, FiBell, FiCalendar } from 'react-icons/fi'
+import { FiPlus, FiTrash2, FiBell, FiCalendar, FiClock } from 'react-icons/fi'
 import toast from 'react-hot-toast'
 import AuthWrapper from '@/components/auth/AuthWrapper'
 
@@ -107,18 +107,18 @@ export default function Reminders() {
 
   return (
     <AuthWrapper>
-      <div className="min-h-screen bg-gray-50 py-8">
+      <div className="min-h-screen bg-gray-50 py-4 sm:py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Clearance Reminders</h1>
-              <p className="mt-2 text-gray-600">
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">Clearance Reminders</h1>
+              <p className="mt-1 sm:mt-2 text-sm sm:text-base text-gray-600">
                 Keep track of important NYSC clearance dates and activities.
               </p>
             </div>
             <button
               onClick={() => setShowForm(!showForm)}
-              className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2.5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
             >
               <FiPlus className="-ml-1 mr-2 h-5 w-5" />
               Add Reminder
@@ -127,7 +127,7 @@ export default function Reminders() {
 
           {/* Add Reminder Form */}
           {showForm && (
-            <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-100 p-6">
+            <div className="mt-6 sm:mt-8 bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-6">
               <form onSubmit={handleAddReminder} className="space-y-4">
                 <div>
                   <label htmlFor="title" className="block text-sm font-medium text-gray-700">
@@ -172,17 +172,17 @@ export default function Reminders() {
                   />
                 </div>
 
-                <div className="flex justify-end space-x-3">
+                <div className="flex flex-col sm:flex-row justify-end space-y-3 sm:space-y-0 sm:space-x-3">
                   <button
                     type="button"
                     onClick={() => setShowForm(false)}
-                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                    className="w-full sm:w-auto px-4 py-2.5 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                    className="w-full sm:w-auto px-4 py-2.5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                   >
                     Save Reminder
                   </button>
@@ -192,9 +192,9 @@ export default function Reminders() {
           )}
 
           {/* Reminders List */}
-          <div className="mt-8">
+          <div className="mt-6 sm:mt-8">
             {loading ? (
-              <div className="bg-white shadow-sm rounded-lg border border-gray-100 p-6">
+              <div className="bg-white shadow-sm rounded-lg border border-gray-100 p-4 sm:p-6">
                 <div className="animate-pulse space-y-4">
                   {[1, 2, 3].map((i) => (
                     <div key={i} className="flex items-center space-x-4">
@@ -214,28 +214,28 @@ export default function Reminders() {
                     <li key={reminder.id} className="hover:bg-gray-50 transition-colors">
                       <div className="px-4 py-4 sm:px-6">
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-3">
+                          <div className="flex items-center space-x-3 min-w-0">
                             <div className="flex-shrink-0 bg-primary-50 p-2 rounded-lg">
                               <FiBell className="h-5 w-5 text-primary-500" />
                             </div>
-                            <div>
-                              <p className="text-sm font-medium text-gray-900">{reminder.title}</p>
+                            <div className="min-w-0 flex-1">
+                              <p className="text-sm font-medium text-gray-900 truncate">{reminder.title}</p>
                               <div className="mt-1 flex items-center text-sm text-gray-500">
-                                <FiCalendar className="mr-1.5 h-4 w-4" />
-                                {formatDate(reminder.date)}
+                                <FiCalendar className="flex-shrink-0 mr-1.5 h-4 w-4" />
+                                <span className="truncate">{formatDate(reminder.date)}</span>
                               </div>
                             </div>
                           </div>
                           <button
                             onClick={() => handleDeleteReminder(reminder.id)}
-                            className="text-gray-400 hover:text-red-500 transition-colors"
+                            className="ml-4 flex-shrink-0 p-2 text-gray-400 hover:text-red-500 transition-colors rounded-full hover:bg-gray-100"
                           >
                             <FiTrash2 className="h-5 w-5" />
                           </button>
                         </div>
                         {reminder.description && (
                           <div className="mt-2">
-                            <p className="text-sm text-gray-500">{reminder.description}</p>
+                            <p className="text-sm text-gray-500 break-words">{reminder.description}</p>
                           </div>
                         )}
                       </div>
@@ -244,7 +244,7 @@ export default function Reminders() {
                 </ul>
               </div>
             ) : (
-              <div className="text-center py-12 bg-white rounded-lg shadow-sm border border-gray-100">
+              <div className="text-center py-8 sm:py-12 bg-white rounded-lg shadow-sm border border-gray-100">
                 <div className="mx-auto h-12 w-12 bg-primary-50 rounded-full flex items-center justify-center">
                   <FiBell className="h-6 w-6 text-primary-500" />
                 </div>
@@ -255,7 +255,7 @@ export default function Reminders() {
                 <div className="mt-6">
                   <button
                     onClick={() => setShowForm(true)}
-                    className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                    className="w-full sm:w-auto inline-flex items-center justify-center px-4 py-2.5 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
                   >
                     <FiPlus className="-ml-1 mr-2 h-5 w-5" />
                     Add Reminder
