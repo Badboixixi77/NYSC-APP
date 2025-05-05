@@ -1,28 +1,20 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { auth } from '@/lib/firebase'
-import { signOut } from 'firebase/auth'
-import { FaUser, FaSignOutAlt } from 'react-icons/fa'
 import toast from 'react-hot-toast'
+import { useAuth } from '@/lib/firebase'
+import { FiUser, FiLogOut } from 'react-icons/fi'
 
 export default function Navigation() {
   const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsAuthenticated(!!user)
-    })
-    return () => unsubscribe()
-  }, [])
+  const { user, signOut: authSignOut } = useAuth()
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth)
+      await authSignOut()
       toast.success('Signed out successfully')
     } catch (error) {
       console.error('Error signing out:', error)
@@ -33,7 +25,7 @@ export default function Navigation() {
   const isActive = (path: string) => pathname === path
 
   return (
-    <nav className="bg-white shadow">
+    <nav className="sticky top-0 z-50 bg-white shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
@@ -44,76 +36,85 @@ export default function Navigation() {
             </div>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
+                href="/dashboard"
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
+                  isActive('/dashboard')
+                    ? 'border-green-500 text-gray-900'
+                    : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
+                }`}
+              >
+                Dashboard
+              </Link>
+              <Link
                 href="/ppa-search"
-                className={`${
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                   isActive('/ppa-search')
                     ? 'border-green-500 text-gray-900'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                }`}
               >
                 PPA Search
               </Link>
               <Link
                 href="/reminders"
-                className={`${
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                   isActive('/reminders')
                     ? 'border-green-500 text-gray-900'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                }`}
               >
                 Reminders
               </Link>
               <Link
                 href="/community"
-                className={`${
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                   isActive('/community')
                     ? 'border-green-500 text-gray-900'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                }`}
               >
                 Community
               </Link>
               <Link
                 href="/resources"
-                className={`${
+                className={`inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium ${
                   isActive('/resources')
                     ? 'border-green-500 text-gray-900'
                     : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'
-                } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                }`}
               >
                 Resources
               </Link>
             </div>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
-            {isAuthenticated ? (
+            {user ? (
               <div className="flex items-center space-x-4">
-                <Link
-                  href="/dashboard"
-                  className="text-gray-500 hover:text-gray-700"
-                >
-                  <FaUser className="h-6 w-6" />
-                </Link>
+                <span className="text-sm text-gray-700">
+                  {user.email}
+                </span>
                 <button
                   onClick={handleSignOut}
-                  className="text-gray-500 hover:text-gray-700"
+                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                 >
-                  <FaSignOutAlt className="h-6 w-6" />
+                  <FiLogOut className="mr-2" />
+                  Sign Out
                 </button>
               </div>
             ) : (
               <div className="flex items-center space-x-4">
                 <Link
                   href="/auth/login"
-                  className="text-gray-500 hover:text-gray-700"
+                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-green-600 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                 >
-                  Sign in
+                  <FiUser className="mr-2" />
+                  Sign In
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="bg-green-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700"
+                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
                 >
-                  Sign up
+                  Sign Up
                 </Link>
               </div>
             )}
@@ -202,7 +203,7 @@ export default function Navigation() {
           </Link>
         </div>
         <div className="pt-4 pb-3 border-t border-gray-200">
-          {isAuthenticated ? (
+          {user ? (
             <div className="space-y-1">
               <Link
                 href="/dashboard"
